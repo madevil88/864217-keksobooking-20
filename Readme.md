@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Сергей Черненко](https://up.htmlacademy.ru/javascript/20/user/864217).
-* Наставник: `Неизвестно`.
+* Наставник: [Павел Белик](https://htmlacademy.ru/profile/id84572).
 
 ---
 
