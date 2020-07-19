@@ -22,7 +22,7 @@
     return stylePosition;
   };
 
-  var mainPinLocation = function (shiftX, shiftY) {
+  var getMainPinLocation = function (shiftX, shiftY) {
     var currentLocation = {
       x: window.form.mapPinMain.offsetLeft - shiftX,
       y: window.form.mapPinMain.offsetTop - shiftY
@@ -64,7 +64,7 @@
         y: moveEvt.clientY
       };
 
-      mainPinLocation(shift.x, shift.y);
+      getMainPinLocation(shift.x, shift.y);
       window.form.inputAdress();
     };
 
