@@ -3,12 +3,16 @@
 (function () {
   window.form = {
     mapPinMain: window.pin.map.querySelector('.map__pin--main'),
-    mapPinMainLocation: {
-      x: window.pin.map.querySelector('.map__pin--main').offsetLeft,
-      y: window.pin.map.querySelector('.map__pin--main').offsetTop
-    },
     form: document.querySelector('.ad-form'),
-    inputAdress: document.querySelector('#address'),
+    inputAdress: function () {
+      var adress = document.querySelector('#address');
+      adress.value = Math.round(window.form.mapPinMain.offsetLeft + window.data.MAP_PIN_MAIN_WIDTH / 2) + ', ' + Math.round(window.form.mapPinMain.offsetTop + (window.data.MAP_PIN_MAIN_HEIGHT + window.data.TAIL_MAP_PIN_MAIN_HEIGHT));
+      if (window.pin.map.classList.contains('map--faded')) {
+        adress.value = Math.round(window.form.mapPinMain.offsetLeft + (window.data.MAP_PIN_MAIN_WIDTH / 2)) + ', ' + Math.round(window.form.mapPinMain.offsetTop + (window.data.MAP_PIN_MAIN_HEIGHT / 2));
+      }
+
+      return adress.value;
+    },
     activatedForms: function () {
       for (var z = 0; z < window.form.form.children.length; z++) {
         window.form.form.children[z].removeAttribute('disabled', '');
@@ -34,7 +38,7 @@
 
   disabledForms();
 
-  window.form.inputAdress.value = Math.round(window.form.mapPinMainLocation.x + (window.data.MAP_PIN_MAIN_WIDTH / 2)) + ', ' + Math.round(window.form.mapPinMainLocation.y + (window.data.MAP_PIN_MAIN_HEIGHT / 2));
+  window.form.inputAdress();
 
   var titleInput = document.querySelector('#title');
 
