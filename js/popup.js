@@ -51,7 +51,7 @@
 
   window.pin.mapPins.addEventListener('click', function (evt) {
     evt.preventDefault();
-    window.form.mapPinMain.removeEventListener('mousedown', window.pageControl.pageActiveHandler);
+    window.form.mapPinMain.removeEventListener('mousedown', window.pinMain.pageActiveHandler);
     openPopup(evt);
   });
 
