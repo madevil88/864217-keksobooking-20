@@ -7,7 +7,12 @@
       window.form.form.classList.remove('ad-form--disabled');
       window.form.inputAdress();
       window.form.activatedForms();
-      window.pin.renderMapPinsList();
+      var mapPinList = window.pin.mapPins.querySelectorAll('.map__pin');
+      for (var i = 0; i < mapPinList.length; i++) {
+        if (mapPinList[i].classList.contains('hidden')) {
+          mapPinList[i].classList.remove('hidden');
+        }
+      }
     },
   };
 

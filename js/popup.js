@@ -1,9 +1,6 @@
 'use strict';
 
 (function () {
-  var popup = document.querySelector('.popup');
-  var popupClose = popup.querySelector('.popup__close');
-  var mapCardList = window.pin.map.querySelectorAll('.map__card');
 
   var onPopupEscPress = function (evt) {
     if (evt.key === 'Escape') {
@@ -13,11 +10,14 @@
   };
 
   var openPopup = function (evt) {
+    var mapCardList = window.pin.map.querySelectorAll('.map__card');
     var mapPinList = window.pin.mapPins.querySelectorAll('.map__pin');
     for (var p = 1; p < mapPinList.length; p++) {
       if (mapPinList[p] === evt.target.parentElement || mapPinList[p] === evt.target) {
-        if (!mapCardList[p - 1].classList.contains('hidden')) {
-          mapCardList[p - 1].classList.add('hidden');
+        for (var i = 0; i < mapCardList.length; i++) {
+          if (!mapCardList[i].classList.contains('hidden')) {
+            mapCardList[i].classList.add('hidden');
+          }
         }
         mapCardList[p - 1].classList.remove('hidden');
         var closeButton = mapCardList[p - 1].querySelector('.popup__close');
@@ -32,6 +32,7 @@
   };
 
   var closePopup = function () {
+    var mapCardList = window.pin.map.querySelectorAll('.map__card');
     var mapPinList = window.pin.mapPins.querySelectorAll('.map__pin');
     for (var p = 1; p < mapPinList.length; p++) {
       if (!mapCardList[p - 1].classList.contains('hidden')) {
@@ -42,17 +43,18 @@
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
-  popupClose.addEventListener('keydown', function (evt) {
-    evt.preventDefault();
-    if (evt.key === 'Enter') {
-      closePopup();
-    }
-  });
 
   window.pin.mapPins.addEventListener('click', function (evt) {
     evt.preventDefault();
     window.form.mapPinMain.removeEventListener('mousedown', window.pinMain.pageActiveHandler);
     openPopup(evt);
+    var popupClose = document.querySelector('.popup__close');
+    popupClose.addEventListener('keydown', function () {
+      evt.preventDefault();
+      if (evt.key === 'Enter') {
+        closePopup();
+      }
+    });
   });
 
   window.pin.mapPins.addEventListener('keydown', function (evt) {

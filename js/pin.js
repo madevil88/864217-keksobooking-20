@@ -4,10 +4,10 @@
   window.pin = {
     map: document.querySelector('.map'),
     mapPins: document.querySelector('.map__pins'),
-    renderMapPinsList: function () {
+    renderMapPinsList: function (ads) {
       var fragment = document.createDocumentFragment();
-      for (var g = 0; g < window.offer.ads.length; g++) {
-        fragment.appendChild(renderMapPin(window.offer.ads[g]));
+      for (var g = 0; g < ads.length; g++) {
+        fragment.appendChild(renderMapPin(ads[g]));
       }
       window.pin.mapPins.appendChild(fragment);
     },
@@ -24,7 +24,10 @@
     mapPinElement.style.top = ad.location.y + window.data.PIN_HEIGHT + 'px';
     mapPinElement.querySelector('img').src = ad.author.avatar;
     mapPinElement.querySelector('img').alt = ad.offer.title;
+    mapPinElement.classList.add('hidden');
 
     return mapPinElement;
   };
+
+  window.backend.load(window.pin.renderMapPinsList, window.backend.onError);
 })();
