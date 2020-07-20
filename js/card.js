@@ -56,13 +56,13 @@
     return mapCardElement;
   };
 
-  var renderCardsList = function () {
+  var renderCardsList = function (ads) {
     var fragment = document.createDocumentFragment();
-    for (var w = 0; w < window.offer.ads.length; w++) {
-      fragment.appendChild(getCard(window.offer.ads[w]));
+    for (var w = 0; w < ads.length; w++) {
+      fragment.appendChild(getCard(ads[w]));
     }
     window.pin.map.insertBefore(fragment, window.pin.map.querySelector('.map__filters-container'));
   };
 
-  renderCardsList();
+  window.backend.load(renderCardsList, window.backend.onError);
 })();
