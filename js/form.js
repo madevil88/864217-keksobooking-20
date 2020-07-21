@@ -163,4 +163,11 @@
       pageDeactivationHandler();
     });
   });
+
+  var formReset = window.form.form.querySelector('.ad-form__reset');
+
+  formReset.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    pageDeactivationHandler();
+  });
 })();

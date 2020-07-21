@@ -1,10 +1,8 @@
 'use strict';
 
 (function () {
-  var LOAD_URL =
-
-    'https://javascript.pages.academy/keksobooking/data';
-  var SAVE_URL = 'https://javascript.pages.academy/keksobooking';
+  var LOAD_URL = 'https://javascript.pages.academy/keksobooking/data';
+  var SAVE_URL = 'https://javascript.pages.academy/keksobookingQ';
   var TIMEOUT_IN_MS = 10000;
   var StatusCode = {
     OK: 200
@@ -58,6 +56,9 @@
     var errorMessage = errorTemplate.cloneNode(true);
 
     document.querySelector('main').insertAdjacentElement('afterbegin', errorMessage);
+
+    var errorButton = errorMessage.querySelector('.error__button');
+    errorButton.addEventListener('click', onDocumentClick);
 
     document.addEventListener('keydown', onDocumentEscPress);
     document.addEventListener('click', onDocumentClick);
