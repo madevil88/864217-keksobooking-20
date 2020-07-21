@@ -139,4 +139,35 @@
   capacity.addEventListener('change', function () {
     capacitySetCustomValidity();
   });
+
+  var pageDeactivationHandler = function () {
+    window.pin.map.classList.add('map--faded');
+    var pinMain = window.pin.mapPins.querySelector('.map__pin--main');
+    pinMain.style.left = 570 + 'px';
+    pinMain.style.top = 375 + 'px';
+    window.form.form.classList.add('ad-form--disabled');
+    window.form.form.reset();
+    window.form.inputAdress();
+    disabledForms();
+    var mapPinList = window.pin.mapPins.querySelectorAll('.map__pin');
+    for (var i = 1; i < mapPinList.length; i++) {
+      if (!mapPinList[i].classList.contains('hidden')) {
+        mapPinList[i].classList.add('hidden');
+      }
+    }
+  };
+
+  window.form.form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(window.form.form), function () {
+      pageDeactivationHandler();
+    });
+  });
+
+  var formReset = window.form.form.querySelector('.ad-form__reset');
+
+  formReset.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    pageDeactivationHandler();
+  });
 })();
