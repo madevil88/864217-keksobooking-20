@@ -29,5 +29,5 @@
     return mapPinElement;
   };
 
-  window.backend.load(window.pin.renderMapPinsList, window.backend.onError);
+  window.backend.load(window.pin.renderMapPinsList);
 })();

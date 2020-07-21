@@ -21,7 +21,6 @@
         }
         mapCardList[p - 1].classList.remove('hidden');
         var closeButton = mapCardList[p - 1].querySelector('.popup__close');
-
         closeButton.addEventListener('click', function () {
           closePopup();
         });

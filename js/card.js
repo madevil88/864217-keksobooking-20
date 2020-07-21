@@ -64,5 +64,5 @@
     window.pin.map.insertBefore(fragment, window.pin.map.querySelector('.map__filters-container'));
   };
 
-  window.backend.load(renderCardsList, window.backend.onError);
+  window.backend.load(renderCardsList);
 })();
