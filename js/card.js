@@ -1,6 +1,23 @@
 'use strict';
 
 (function () {
+  window.card = {
+    'renderCardsList': function (ads) {
+      var mapCardsList = window.pin.map.querySelectorAll('.map__card');
+      for (var i = 0; i < mapCardsList.length; i++) {
+        mapCardsList[i].remove();
+      }
+      var adsCount = window.data.MAX_ADS_COUNT;
+      if (adsCount > ads.length) {
+        adsCount = ads.length;
+      }
+      var fragment = document.createDocumentFragment();
+      for (var w = 0; w < adsCount; w++) {
+        fragment.appendChild(getCard(ads[w]));
+      }
+      window.pin.map.insertBefore(fragment, window.pin.map.querySelector('.map__filters-container'));
+    },
+  };
   var cardTemplate = document.querySelector('#card')
     .content
     .querySelector('.map__card');
@@ -55,14 +72,4 @@
 
     return mapCardElement;
   };
-
-  var renderCardsList = function (ads) {
-    var fragment = document.createDocumentFragment();
-    for (var w = 0; w < ads.length; w++) {
-      fragment.appendChild(getCard(ads[w]));
-    }
-    window.pin.map.insertBefore(fragment, window.pin.map.querySelector('.map__filters-container'));
-  };
-
-  window.backend.load(renderCardsList);
 })();

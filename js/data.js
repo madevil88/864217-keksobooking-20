@@ -47,6 +47,7 @@
       'Возможно заселение с домашними животными'
     ],
     AD_QUANTITY: 8,
+    MAX_ADS_COUNT: 5,
     MIN_LOCATION_Y: 130,
     MAX_LOCATION_Y: 630,
     PIN_WIDTH: 50,
