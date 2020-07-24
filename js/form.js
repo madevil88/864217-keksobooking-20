@@ -149,6 +149,11 @@
     window.form.form.reset();
     window.form.inputAdress();
     disabledForms();
+    window.popup.closePopup();
+    var mapFiltersList = document.querySelectorAll('.map__filter');
+    for (var y = 0; y < mapFiltersList.length; y++) {
+      mapFiltersList[y].value = 'any';
+    }
     var mapPinList = window.pin.mapPins.querySelectorAll('.map__pin');
     for (var i = 1; i < mapPinList.length; i++) {
       if (!mapPinList[i].classList.contains('hidden')) {

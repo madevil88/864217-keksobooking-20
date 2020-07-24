@@ -8,10 +8,9 @@
       window.form.inputAdress();
       window.form.activatedForms();
       var mapPinList = window.pin.mapPins.querySelectorAll('.map__pin');
-      for (var i = 0; i < mapPinList.length; i++) {
-        if (mapPinList[i].classList.contains('hidden')) {
-          mapPinList[i].classList.remove('hidden');
-        }
+      if (mapPinList.length === 1) {
+        window.pin.renderMapPinsList(window.backend.ads);
+        window.card.renderCardsList(window.backend.ads);
       }
     },
   };
@@ -47,7 +46,7 @@
     window.form.mapPinMain.style.left = getMainPinLimitation(currentLocation.x, minLocation.x, maxLocation.x) + 'px';
   };
 
-  window.form.mapPinMain.addEventListener('mousedown', function (evt) {
+  var onMouseDown = function (evt) {
     evt.preventDefault();
     window.pinMain.pageActiveHandler();
 
@@ -83,12 +82,14 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  });
 
-  window.form.mapPinMain.addEventListener('keydown', function (evt) {
-    evt.preventDefault();
-    if (evt.key === 'Enter') {
-      window.pinMain.pageActiveHandler();
-    }
-  });
+    window.form.mapPinMain.addEventListener('keydown', function () {
+      evt.preventDefault();
+      if (evt.key === 'Enter') {
+        window.pinMain.pageActiveHandler();
+      }
+    });
+  };
+
+  window.form.mapPinMain.addEventListener('mousedown', onMouseDown);
 })();

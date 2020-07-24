@@ -8,6 +8,10 @@
     OK: 200
   };
 
+  var successHandler = function (data) {
+    window.backend.ads = data;
+  };
+
   var choiceMessage = function (message) {
     if (document.querySelector('main').contains(message)) {
       document.querySelector('main').removeChild(message);
@@ -39,8 +43,8 @@
 
   var onSuccess = function () {
     var successTemplate = document.querySelector('#success')
-    .content
-    .querySelector('.success');
+      .content
+      .querySelector('.success');
     var successMessage = successTemplate.cloneNode(true);
 
     document.querySelector('main').insertAdjacentElement('afterbegin', successMessage);
@@ -51,8 +55,8 @@
 
   var saveError = function () {
     var errorTemplate = document.querySelector('#error')
-    .content
-    .querySelector('.error');
+      .content
+      .querySelector('.error');
     var errorMessage = errorTemplate.cloneNode(true);
 
     document.querySelector('main').insertAdjacentElement('afterbegin', errorMessage);
@@ -78,6 +82,7 @@
   };
 
   window.backend = {
+    'ads': [],
     'load': function (onLoad) {
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
@@ -124,4 +129,6 @@
       xhr.send(data);
     }
   };
+
+  window.backend.load(successHandler);
 })();
