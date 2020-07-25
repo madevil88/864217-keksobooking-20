@@ -9,8 +9,7 @@
       window.form.activatedForms();
       var mapPinList = window.pin.mapPins.querySelectorAll('.map__pin');
       if (mapPinList.length === 1) {
-        window.pin.renderMapPinsList(window.backend.ads);
-        window.card.renderCardsList(window.backend.ads);
+        window.filter.updateAds();
       }
     },
   };
