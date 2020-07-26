@@ -160,6 +160,12 @@
         mapPinList[i].classList.add('hidden');
       }
     }
+    var avatarPreview = window.form.form.querySelector('.ad-form-header__preview').querySelector('img');
+    avatarPreview.src = 'img/muffin-grey.svg';
+    var photoPreviewList = window.form.form.querySelector('.ad-form__photo').querySelectorAll('img');
+    for (var j = 0; j < photoPreviewList.length; j++) {
+      photoPreviewList[j].remove();
+    }
   };
 
   window.form.form.addEventListener('submit', function (evt) {
