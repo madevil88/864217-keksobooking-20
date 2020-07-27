@@ -46,9 +46,9 @@
     var valueLength = titleInput.value.length;
     titleInput.setCustomValidity('');
     if (valueLength < window.data.MIN_TITLE_LENGTH) {
-      titleInput.setCustomValidity('Ещё ' + (window.data.MIN_TITLE_LENGTH - valueLength) + ' симв.');
+      titleInput.setCustomValidity('Ещё ' + (window.data.MIN_TITLE_LENGTH - valueLength) + ' симв., минимум 30 симв.');
     } else if (valueLength > window.data.MAX_TITLE_LENGTH) {
-      titleInput.setCustomValidity('Удалите лишние ' + (valueLength - window.data.MAX_TITLE_LENGTH) + ' симв.');
+      titleInput.setCustomValidity('Удалите лишние ' + (valueLength - window.data.MAX_TITLE_LENGTH) + ' симв., максимум 100 симв.');
     }
   };
 
@@ -156,9 +156,7 @@
     }
     var mapPinList = window.pin.mapPins.querySelectorAll('.map__pin');
     for (var i = 1; i < mapPinList.length; i++) {
-      if (!mapPinList[i].classList.contains('hidden')) {
-        mapPinList[i].classList.add('hidden');
-      }
+      mapPinList[i].remove();
     }
     var avatarPreview = window.form.form.querySelector('.ad-form-header__preview').querySelector('img');
     avatarPreview.src = 'img/muffin-grey.svg';

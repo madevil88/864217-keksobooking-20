@@ -49,11 +49,4 @@
       window.popup.closePopup();
     }
   };
-
-  window.pin.mapPins.addEventListener('keydown', function (evt) {
-    evt.preventDefault();
-    if (evt.key === 'Enter') {
-      window.popup.openPopup(evt);
-    }
-  });
 })();

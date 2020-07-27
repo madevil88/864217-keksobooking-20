@@ -60,17 +60,15 @@
       });
 
       var selectedPriceHousing = selectedTypeHousing.filter(function (it) {
-        var price;
         if (filterPriceSelect === 'high') {
-          price = it.offer.price > 50000;
+          return it.offer.price > 50000;
         } else if (filterPriceSelect === 'middle') {
-          price = it.offer.price >= 10000 && it.offer.price <= 50000;
+          return it.offer.price >= 10000 && it.offer.price <= 50000;
         } else if (filterPriceSelect === 'low') {
-          price = it.offer.price < 10000;
+          return it.offer.price < 10000;
         } else {
-          price = it;
+          return it;
         }
-        return price;
       });
 
       var selectedRoomHousing = selectedPriceHousing.filter(function (it) {

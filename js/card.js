@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var SRC_UNDEFINED = 'file:///D:/Programming/JavaScript_level_1/keksobooking/undefined';
   window.card = {
     'renderCardsList': function (ads) {
       var mapCardsList = window.pin.map.querySelectorAll('.map__card');
@@ -46,6 +47,9 @@
 
   var renderPhotosList = function (fieldList, value) {
     fieldList.children[0].src = value[0];
+    if (fieldList.children[0].src === SRC_UNDEFINED) {
+      fieldList.children[0].classList.add('hidden');
+    }
     for (var g = 1; g < value.length; g++) {
       var photo = fieldList.children[0].cloneNode(true);
       photo.src = value[g];

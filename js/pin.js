@@ -28,12 +28,19 @@
 
   var renderMapPin = function (ad) {
     var mapPinElement = mapPinTemplate.cloneNode(true);
-
-    mapPinElement.style.left = ad.location.x + window.data.PIN_WIDTH / 2 + 'px';
-    mapPinElement.style.top = ad.location.y + window.data.PIN_HEIGHT + 'px';
-    mapPinElement.querySelector('img').src = ad.author.avatar;
-    mapPinElement.querySelector('img').alt = ad.offer.title;
-    mapPinElement.addEventListener('click', window.popup.openPopup);
+    if (ad.offer !== 'undefined') {
+      mapPinElement.style.left = ad.location.x + window.data.PIN_WIDTH / 2 + 'px';
+      mapPinElement.style.top = ad.location.y + window.data.PIN_HEIGHT + 'px';
+      mapPinElement.querySelector('img').src = ad.author.avatar;
+      mapPinElement.querySelector('img').alt = ad.offer.title;
+      mapPinElement.addEventListener('click', window.popup.openPopup);
+      mapPinElement.addEventListener('keydown', function (evt) {
+        if (evt.key === 'Enter') {
+          evt.preventDefault();
+          window.popup.openPopup(evt);
+        }
+      });
+    }
 
     return mapPinElement;
   };

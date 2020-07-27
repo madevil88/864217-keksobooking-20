@@ -4,7 +4,7 @@
   var LOAD_URL = 'https://javascript.pages.academy/keksobooking/data';
   var SAVE_URL = 'https://javascript.pages.academy/keksobooking';
   var TIMEOUT_IN_MS = 10000;
-  var StatusCode = {
+  var STATUS_CODE = {
     OK: 200
   };
 
@@ -87,7 +87,7 @@
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
       xhr.addEventListener('load', function () {
-        if (xhr.status === StatusCode.OK) {
+        if (xhr.status === STATUS_CODE.OK) {
           onLoad(xhr.response);
         } else {
           loadError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
@@ -109,7 +109,7 @@
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
       xhr.addEventListener('load', function () {
-        if (xhr.status === StatusCode.OK) {
+        if (xhr.status === STATUS_CODE.OK) {
           onLoad(xhr.response);
           onSuccess();
         } else {

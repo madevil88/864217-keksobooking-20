@@ -82,13 +82,15 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
 
-    window.form.mapPinMain.addEventListener('keydown', function () {
-      evt.preventDefault();
-      if (evt.key === 'Enter') {
-        window.pinMain.pageActiveHandler();
-      }
-    });
+
   };
+
+  window.form.mapPinMain.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Enter') {
+      evt.preventDefault();
+      window.pinMain.pageActiveHandler();
+    }
+  });
 
   window.form.mapPinMain.addEventListener('mousedown', onMouseDown);
 })();
