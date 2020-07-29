@@ -18,8 +18,8 @@
         adsCount = ads.length;
       }
       var fragment = document.createDocumentFragment();
-      for (var index1 = 0; index1 < adsCount; index1++) {
-        fragment.appendChild(getCard(ads[index1]));
+      for (var i = 0; i < adsCount; i++) {
+        fragment.appendChild(getCard(ads[i]));
       }
       window.pin.map.insertBefore(fragment, window.pin.map.querySelector('.map__filters-container'));
     },
@@ -42,12 +42,12 @@
     var elementClasses = features.map(function (feature) {
       return 'popup__feature--' + feature;
     });
-    for (var elIndex = 0; elIndex < elements.length; elIndex++) {
-      if (elementClasses.indexOf(elements[elIndex].classList[1]) !== -1) {
-        var feature = elements[elIndex].classList[1].replace('.popup__feature--', '');
-        elements[elIndex].textContent = feature;
+    for (var j = 0; j < elements.length; j++) {
+      if (elementClasses.indexOf(elements[j].classList[1]) !== -1) {
+        var feature = elements[j].classList[1].replace('.popup__feature--', '');
+        elements[j].textContent = feature;
       } else {
-        elements[elIndex].classList.add('hidden');
+        elements[j].classList.add('hidden');
       }
     }
   };
@@ -57,9 +57,9 @@
     if (value.length === 0) {
       fieldList.remove();
     }
-    for (var index3 = 1; index3 < value.length; index3++) {
+    for (var k = 1; k < value.length; k++) {
       var photo = fieldList.children[0].cloneNode(true);
-      photo.src = value[index3];
+      photo.src = value[k];
       fieldList.appendChild(photo);
     }
   };
@@ -81,6 +81,9 @@
       mapCardElement.querySelector('.popup__text--time').remove();
     }
     getFeatures(mapCardElement.querySelector('.popup__features'), ad.offer.features);
+    if (ad.offer.features.length === 0) {
+      mapCardElement.querySelector('.popup__features').remove();
+    }
     addCheckedFields(mapCardElement.querySelector('.popup__description'), ad.offer.description);
     renderPhotos(mapCardElement.querySelector('.popup__photos'), ad.offer.photos);
     addCheckedFields(mapCardElement.querySelector('.popup__avatar'), ad.author.avatar);

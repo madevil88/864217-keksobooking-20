@@ -17,16 +17,16 @@
     'mapPinsBlock': document.querySelector('.map__pins'),
     'renderMapPins': function (ads) {
       var mapPins = window.pin.mapPinsBlock.querySelectorAll('.map__pin');
-      for (var index1 = 1; index1 < mapPins.length; index1++) {
-        mapPins[index1].remove();
+      for (var i = 1; i < mapPins.length; i++) {
+        mapPins[i].remove();
       }
       var adsCount = window.pin.MAX_ADS_COUNT;
       if (adsCount > ads.length) {
         adsCount = ads.length;
       }
       var fragment = document.createDocumentFragment();
-      for (var index2 = 0; index2 < adsCount; index2++) {
-        fragment.appendChild(renderMapPin(ads[index2]));
+      for (var j = 0; j < adsCount; j++) {
+        fragment.appendChild(renderMapPin(ads[j]));
       }
       window.pin.mapPinsBlock.appendChild(fragment);
     },

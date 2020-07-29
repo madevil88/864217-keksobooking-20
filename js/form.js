@@ -23,19 +23,19 @@
       return adress.value;
     },
     'activateForm': function () {
-      for (var index1 = 0; index1 < window.form.formAd.children.length; index1++) {
-        window.form.formAd.children[index1].removeAttribute('disabled');
+      for (var i = 0; i < window.form.formAd.children.length; i++) {
+        window.form.formAd.children[i].removeAttribute('disabled');
       }
     },
   };
 
   var disableForms = function () {
-    for (var index2 = 0; index2 < window.form.formAd.children.length; index2++) {
-      window.form.formAd.children[index2].setAttribute('disabled', '');
+    for (var j = 0; j < window.form.formAd.children.length; j++) {
+      window.form.formAd.children[j].setAttribute('disabled', '');
     }
 
-    for (var index3 = 0; index3 < window.form.mapFilters.children.length; index3++) {
-      window.form.mapFilters.children[index3].setAttribute('disabled', '');
+    for (var k = 0; k < window.form.mapFilters.children.length; k++) {
+      window.form.mapFilters.children[k].setAttribute('disabled', '');
     }
   };
 
@@ -109,14 +109,19 @@
   };
   var capacitySetCustomValidity = function () {
     capacity.setCustomValidity('');
+    capacity.style = '';
     if (rooomNumber.value === '1' && capacity.value !== '1') {
       capacity.setCustomValidity('Только для 1-го гостя');
+      capacity.style = 'box-shadow: 0 0 2px 2px red;';
     } else if (rooomNumber.value === '2' && (capacity.value > '2' || capacity.value === '0')) {
       capacity.setCustomValidity('Не более 2-х гостей');
+      capacity.style = 'box-shadow: 0 0 2px 2px red;';
     } else if (rooomNumber.value === '3' && (capacity.value > '3' || capacity.value === '0')) {
       capacity.setCustomValidity('Не более 3-х гостей');
+      capacity.style = 'box-shadow: 0 0 2px 2px red;';
     } else if (rooomNumber.value === '100' && capacity.value !== '0') {
       capacity.setCustomValidity('Не для гостей');
+      capacity.style = 'box-shadow: 0 0 2px 2px red;';
     }
   };
 

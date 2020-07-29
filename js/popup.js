@@ -34,9 +34,9 @@
       var mapCards = window.pin.map.querySelectorAll('.map__card');
       var mapPins = window.pin.mapPinsBlock.querySelectorAll('.map__pin');
       addClassHidden(mapCards);
-      for (var mapPinIndex = 0; mapPinIndex < mapPins.length; mapPinIndex++) {
-        if (mapPins[mapPinIndex].classList.contains('map__pin--active')) {
-          mapPins[mapPinIndex].classList.remove('map__pin--active');
+      for (var i = 0; i < mapPins.length; i++) {
+        if (mapPins[i].classList.contains('map__pin--active')) {
+          mapPins[i].classList.remove('map__pin--active');
         }
       }
 
@@ -48,12 +48,12 @@
       var mapPins = window.pin.mapPinsBlock.querySelectorAll('.map__pin');
 
       addClassHidden(mapCards);
-      for (var index = 1; index < mapPins.length; index++) {
-        mapPins[index].classList.remove('map__pin--active');
-        if (mapPins[index] === evt.target.parentElement || mapPins[index] === evt.target) {
-          mapPins[index].classList.add('map__pin--active');
-          mapCards[index - 1].classList.remove('hidden');
-          var closeButton = mapCards[index - 1].querySelector('.popup__close');
+      for (var j = 1; j < mapPins.length; j++) {
+        mapPins[j].classList.remove('map__pin--active');
+        if (mapPins[j] === evt.target.parentElement || mapPins[j] === evt.target) {
+          mapPins[j].classList.add('map__pin--active');
+          mapCards[j - 1].classList.remove('hidden');
+          var closeButton = mapCards[j - 1].querySelector('.popup__close');
         }
       }
 

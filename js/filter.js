@@ -59,8 +59,8 @@
   });
 
   var getSelectedFeatures = function (card) {
-    for (var featureIndex = 0; featureIndex < selectFilters[1].length; featureIndex++) {
-      if (card.offer.features.indexOf(selectFilters[1][featureIndex]) === -1 && selectFilters[1].length !== 0) {
+    for (var i = 0; i < selectFilters[1].length; i++) {
+      if (card.offer.features.indexOf(selectFilters[1][i]) === -1 && selectFilters[1].length !== 0) {
         return false;
       }
     }
@@ -69,8 +69,8 @@
 
   window.filter = {
     'activatedFilters': function () {
-      for (var index = 0; index < window.form.mapFilters.children.length; index++) {
-        window.form.mapFilters.children[index].removeAttribute('disabled');
+      for (var j = 0; j < window.form.mapFilters.children.length; j++) {
+        window.form.mapFilters.children[j].removeAttribute('disabled');
       }
     },
     'updateAds': function () {
@@ -81,11 +81,11 @@
             if (ad.offer.guests.toString() === selectFilters[0].filterGuests || selectFilters[0].filterGuests === DEFAULT_FILTER_VALUE) {
               if ((selectFilters[0].filterPrice === priceSelectOption.MIDDLE && (ad.offer.price >= priceSelectValue.LOW && ad.offer.price <= priceSelectValue.HIGH)) || selectFilters[0].filterPrice === DEFAULT_FILTER_VALUE) {
                 return getSelectedFeatures(ad);
+              } else if ((selectFilters[0].filterPrice === priceSelectOption.HIGH && ad.offer.price > priceSelectValue.HIGH) || selectFilters[0].filterPrice === DEFAULT_FILTER_VALUE) {
+                return getSelectedFeatures(ad);
+              } else if ((selectFilters[0].filterPrice === priceSelectOption.LOW && ad.offer.price < priceSelectValue.LOW) || selectFilters[0].filterPrice === DEFAULT_FILTER_VALUE) {
+                return getSelectedFeatures(ad);
               }
-            } else if ((selectFilters[0].filterPrice === priceSelectOption.HIGH && ad.offer.price > priceSelectValue.HIGH) || selectFilters[0].filterPrice === DEFAULT_FILTER_VALUE) {
-              return getSelectedFeatures(ad);
-            } else if ((selectFilters[0].filterPrice === priceSelectOption.LOW && ad.offer.price < priceSelectValue.LOW) || selectFilters[0].filterPrice === DEFAULT_FILTER_VALUE) {
-              return getSelectedFeatures(ad);
             }
           }
         }
