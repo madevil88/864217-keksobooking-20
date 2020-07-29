@@ -2,14 +2,13 @@
 
 (function () {
   window.pinMain = {
-    pageActiveHandler: function () {
-      window.pin.map.classList.remove('map--faded');
-      window.form.form.classList.remove('ad-form--disabled');
-      window.form.inputAdress();
-      window.form.activatedForms();
-      var mapPinList = window.pin.mapPins.querySelectorAll('.map__pin');
-      if (mapPinList.length === 1) {
-        window.filter.updateAds();
+    'pageActiveHandler': function () {
+      if (window.pin.map.classList.contains('map--faded')) {
+        window.pin.map.classList.remove('map--faded');
+        window.form.formAd.classList.remove('ad-form--disabled');
+        window.form.enterAdress();
+        window.form.activateForm();
+        window.backend.load(window.backend.successHandler);
       }
     },
   };
@@ -32,13 +31,13 @@
     };
 
     var minLocation = {
-      x: 0 - (window.data.MAP_PIN_MAIN_WIDTH / 2),
-      y: window.data.MIN_LOCATION_Y - window.data.MAP_PIN_MAIN_HEIGHT - window.data.TAIL_MAP_PIN_MAIN_HEIGHT
+      x: window.pin.MIN_LOCATION_X - (window.pin.MAP_PIN_MAIN_WIDTH / 2),
+      y: window.pin.MIN_LOCATION_Y - window.pin.MAP_PIN_MAIN_HEIGHT - window.pin.TAIL_MAP_PIN_MAIN_HEIGHT
     };
 
     var maxLocation = {
-      x: 1200 - (window.data.MAP_PIN_MAIN_WIDTH / 2),
-      y: window.data.MAX_LOCATION_Y - window.data.MAP_PIN_MAIN_HEIGHT - window.data.TAIL_MAP_PIN_MAIN_HEIGHT
+      x: window.pin.MAX_LOCATION_X - (window.pin.MAP_PIN_MAIN_WIDTH / 2),
+      y: window.pin.MAX_LOCATION_Y - window.pin.MAP_PIN_MAIN_HEIGHT - window.pin.TAIL_MAP_PIN_MAIN_HEIGHT
     };
 
     window.form.mapPinMain.style.top = getMainPinLimitation(currentLocation.y, minLocation.y, maxLocation.y) + 'px';
@@ -68,12 +67,12 @@
       };
 
       getMainPinLocation(shift.x, shift.y);
-      window.form.inputAdress();
+      window.form.enterAdress();
     };
 
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
-      window.form.inputAdress();
+      window.form.enterAdress();
 
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);

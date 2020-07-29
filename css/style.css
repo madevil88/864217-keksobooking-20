@@ -1249,3 +1249,8 @@ fieldset {
 .hidden {
   display: none;
 }
+
+input:invalid {
+  -webkit-box-shadow: 0 0 2px 2px red;
+          box-shadow: 0 0 2px 2px red;
+}

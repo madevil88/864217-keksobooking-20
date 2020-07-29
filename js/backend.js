@@ -4,13 +4,7 @@
   var LOAD_URL = 'https://javascript.pages.academy/keksobooking/data';
   var SAVE_URL = 'https://javascript.pages.academy/keksobooking';
   var TIMEOUT_IN_MS = 10000;
-  var STATUS_CODE = {
-    OK: 200
-  };
-
-  var successHandler = function (data) {
-    window.backend.ads = data;
-  };
+  var STATUS_CODE_OK = 200;
 
   var choiceMessage = function (message) {
     if (document.querySelector('main').contains(message)) {
@@ -25,18 +19,18 @@
     choiceMessage(errorMessage);
     choiceMessage(successMessage);
 
-    document.removeEventListener('keydown', onDocumentEscPress);
-    document.removeEventListener('click', onDocumentClick);
+    document.removeEventListener('keydown', escPressHandler);
+    document.removeEventListener('click', errorMessageHandler);
   };
 
-  var onDocumentEscPress = function (evt) {
+  var escPressHandler = function (evt) {
     if (evt.key === 'Escape') {
       evt.preventDefault();
       closeMessage();
     }
   };
 
-  var onDocumentClick = function (evt) {
+  var errorMessageHandler = function (evt) {
     evt.preventDefault();
     closeMessage();
   };
@@ -49,8 +43,8 @@
 
     document.querySelector('main').insertAdjacentElement('afterbegin', successMessage);
 
-    document.addEventListener('keydown', onDocumentEscPress);
-    document.addEventListener('click', onDocumentClick);
+    document.addEventListener('keydown', escPressHandler);
+    document.addEventListener('click', errorMessageHandler);
   };
 
   var saveError = function () {
@@ -62,10 +56,10 @@
     document.querySelector('main').insertAdjacentElement('afterbegin', errorMessage);
 
     var errorButton = errorMessage.querySelector('.error__button');
-    errorButton.addEventListener('click', onDocumentClick);
+    errorButton.addEventListener('click', errorMessageHandler);
 
-    document.addEventListener('keydown', onDocumentEscPress);
-    document.addEventListener('click', onDocumentClick);
+    document.addEventListener('keydown', escPressHandler);
+    document.addEventListener('click', errorMessageHandler);
   };
 
   var loadError = function (errorMessage) {
@@ -87,8 +81,9 @@
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
       xhr.addEventListener('load', function () {
-        if (xhr.status === STATUS_CODE.OK) {
+        if (xhr.status === STATUS_CODE_OK) {
           onLoad(xhr.response);
+          window.filter.activatedFilters();
         } else {
           loadError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
         }
@@ -109,7 +104,7 @@
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
       xhr.addEventListener('load', function () {
-        if (xhr.status === STATUS_CODE.OK) {
+        if (xhr.status === STATUS_CODE_OK) {
           onLoad(xhr.response);
           onSuccess();
         } else {
@@ -127,8 +122,11 @@
 
       xhr.open('POST', SAVE_URL);
       xhr.send(data);
+    },
+    'successHandler': function (data) {
+      window.backend.ads = data;
+      window.pin.renderMapPins(window.backend.ads);
+      window.card.renderCards(window.backend.ads);
     }
   };
-
-  window.backend.load(successHandler);
 })();

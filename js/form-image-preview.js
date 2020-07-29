@@ -4,7 +4,8 @@
   var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   var form = document.querySelector('.ad-form');
   var avatarChooser = form.querySelector('#avatar');
-  var avatarPreview = form.querySelector('.ad-form-header__preview').querySelector('img');
+  var avatarPreviewBox = form.querySelector('.ad-form-header__preview');
+  var avatarPreview = avatarPreviewBox.querySelector('img');
   var photoChooser = form.querySelector('#images');
   var photoPreviewBox = form.querySelector('.ad-form__photo');
 
@@ -23,7 +24,12 @@
         if (imagePreview.src) {
           imagePreview.src = reader.result;
         } else {
-          imagePreview.innerHTML += '<img src="' + reader.result + '" alt="Фото жилья" width="70" height="70">';
+          var newImg = document.createElement('img');
+          newImg.src = reader.result;
+          newImg.alt = 'Фото жилья';
+          newImg.width = '70';
+          newImg.height = '70';
+          photoPreviewBox.appendChild(newImg);
         }
       });
 
